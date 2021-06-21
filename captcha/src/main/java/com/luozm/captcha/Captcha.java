@@ -104,7 +104,7 @@ public class Captcha extends LinearLayout {
         drawableId = typedArray.getResourceId(R.styleable.Captcha_src, R.drawable.cat);
         progressDrawableId = typedArray.getResourceId(R.styleable.Captcha_progressDrawable, R.drawable.po_seekbar);
         thumbDrawableId = typedArray.getResourceId(R.styleable.Captcha_thumbDrawable, R.drawable.thumb);
-        mMode = typedArray.getInteger(R.styleable.Captcha_mode, MODE_BAR);
+        mMode = typedArray.getInteger(R.styleable.Captcha_captcha_mode, MODE_BAR);
         maxFailedCount = typedArray.getInteger(R.styleable.Captcha_max_fail_count, 3);
         blockSize = typedArray.getDimensionPixelSize(R.styleable.Captcha_blockSize, Utils.dp2px(getContext(), 50));
         typedArray.recycle();
