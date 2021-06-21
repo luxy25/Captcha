@@ -1,16 +1,16 @@
 apply plugin: 'com.android.library'
 
 android {
-    compileSdkVersion 25
+    compileSdkVersion 29
     buildToolsVersion "26.0.2"
 
     defaultConfig {
         minSdkVersion 15
-        targetSdkVersion 25
+        targetSdkVersion 27
         versionCode 10
-        versionName "1.1.2"
+        versionName "1.1.2.1"
 
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
 
     }
     buildTypes {
@@ -32,7 +32,7 @@ ext {
     artifact = 'captcha'//同上
 
     libraryDescription = 'An Android captcha widget.'//项目描述
-    libraryVersion = '1.1.2'//项目版本号,只需要在每次更新的时候填写
+    libraryVersion = '1.1.2.1'//项目版本号,只需要在每次更新的时候填写
 
     siteUrl = 'https://github.com/luozhanming/Captcha'
     gitUrl = 'https://github.com/luozhanming/Captcha.git'
@@ -48,10 +48,10 @@ ext {
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+    androidTestCompile('androidx.test.espresso:espresso-core:3.1.0', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    compile 'com.android.support:appcompat-v7:25.3.1'
+    compile 'androidx.appcompat:appcompat:1.0.0'
     testCompile 'junit:junit:4.12'
 }
 

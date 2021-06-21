@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         app:captcha_mode="mode_bar"
         app:src="@mipmap/cat"
-        app:blockSize="50dp"
+        app:blockSize="60dp"
         app:max_fail_count="5"
         android:layout_height="wrap_content"/>
 

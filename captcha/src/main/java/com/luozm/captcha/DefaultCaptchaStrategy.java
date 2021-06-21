@@ -1,13 +1,13 @@
 package com.luozm.captcha;
 
 import android.content.Context;
-import android.graphics.BitmapShader;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.DashPathEffect;
 import android.graphics.Paint;
 import android.graphics.Path;
-import android.support.annotation.NonNull;
+
+import androidx.annotation.NonNull;
 
 import java.util.Random;
 
@@ -43,7 +43,8 @@ public class DefaultCaptchaStrategy extends CaptchaStrategy {
     }
 
     @Override
-    public  @NonNull PositionInfo getBlockPostionInfo(int width, int height, int blockSize) {
+    public  @NonNull
+    PositionInfo getBlockPostionInfo(int width, int height, int blockSize) {
         Random random = new Random();
         int left = random.nextInt(width - blockSize +1);
         //Avoid robot frequently and quickly click the start point to access the captcha.

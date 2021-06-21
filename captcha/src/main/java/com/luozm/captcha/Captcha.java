@@ -5,20 +5,23 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Rect;
 import android.os.AsyncTask;
-import android.support.annotation.AttrRes;
-import android.support.annotation.DrawableRes;
-import android.support.annotation.IntDef;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
+
+import androidx.annotation.AttrRes;
+import androidx.annotation.DrawableRes;
+import androidx.annotation.IntDef;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 /**
  * Created by luozhanming on 2018/1/17.
@@ -121,6 +124,9 @@ public class Captcha extends LinearLayout {
         accessText = (TextView) parentView.findViewById(R.id.accessText);
         accessFailedText = (TextView) parentView.findViewById(R.id.accessFailedText);
         refreshView = (ImageView) parentView.findViewById(R.id.refresh);
+
+        LinearLayout seekbarParent = parentView.findViewById(R.id.seekbar_parent);
+
         setMode(mMode);
         if(drawableId!=-1){
             vertifyView.setImageResource(drawableId);
@@ -208,6 +214,30 @@ public class Captcha extends LinearLayout {
                 startRefresh(v);
             }
         });
+
+        seekbarParent.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                Rect seekRect = new Rect();
+                seekbar.getHitRect(seekRect);
+
+                if ((event.getY() >= (seekRect.top - 500)) && (event.getY() <= (seekRect.bottom + 500))) {
+                    float y = seekRect.top + seekRect.height() / 2;
+                    //seekBar only accept relative x
+                    float x = event.getX() - seekRect.left;
+                    if (x < 0) {
+                        x = 0;
+                    } else if (x > seekRect.width()) {
+                        x = seekRect.width();
+                    }
+                    MotionEvent me = MotionEvent.obtain(event.getDownTime(), event.getEventTime(),
+                            event.getAction(), x, y, event.getMetaState());
+                    return seekbar.onTouchEvent(me);
+                }
+                return false;
+            }
+        });
+
     }
 
     private void startRefresh(View v) {

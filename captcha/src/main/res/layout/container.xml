@@ -3,8 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/container_backgroud"
-    android:orientation="vertical"
-    android:padding="10dp">
+    android:orientation="vertical">
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -84,15 +83,22 @@
 
     </FrameLayout>
 
-
-    <com.luozm.captcha.TextSeekbar
-        android:id="@+id/seekbar"
-        style="@style/MySeekbarSytle"
+    <LinearLayout
+        android:id="@+id/seekbar_parent"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="16dp"
-        android:splitTrack="false"
-        android:thumbOffset="0dp" />
+        android:layout_height="50dp"
+        android:orientation="vertical">
+
+        <com.luozm.captcha.TextSeekbar
+            android:id="@+id/seekbar"
+            style="@style/MySeekbarSytle"
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:layout_gravity="center"
+            android:splitTrack="false"
+            android:thumbOffset="0dp" />
+    </LinearLayout>
+
+
 
 </LinearLayout>
