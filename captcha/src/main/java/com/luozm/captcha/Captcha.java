@@ -155,7 +155,7 @@ public class Captcha extends LinearLayout {
                 accessFailed.setVisibility(VISIBLE);
                 accessSuccess.setVisibility(GONE);
                 if (mListener != null) {
-                    if (failCount == maxFailedCount) {
+                    if (failCount >= maxFailedCount) {
                         String s = mListener.onMaxFailed();
                         if (s != null) {
                             accessFailedText.setText(s);
@@ -181,7 +181,7 @@ public class Captcha extends LinearLayout {
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 if (isDown) {  //手指按下
                     isDown = false;
-                    if (progress > 10) { //按下位置不正确
+                    if (progress > 20) { //按下位置不正确
                         isResponse = false;
                     } else {
                         isResponse = true;
